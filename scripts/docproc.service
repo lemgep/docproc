@@ -1,0 +1,19 @@
+[Unit]
+Description=DocProc standalone document processor
+After=network.target
+
+[Service]
+Type=simple
+User=docproc
+Group=docproc
+WorkingDirectory=/opt/docproc
+ExecStart=/opt/docproc/.venv/bin/python -m app.main run
+Restart=on-failure
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONIOENCODING=utf-8
+Environment=LANG=C.UTF-8
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target
